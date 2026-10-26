@@ -1,0 +1,5 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import {seed,findCycles,propose,approve,withdraw} from '../lib/exchange.ts';
+test('discovers a three-way exchange without bilateral matches',()=>{assert.deepEqual(findCycles(seed()),[['Asha','Maya','Noor']]);});
+test('all three approvals are needed and locked items disappear',()=>{let s=propose(seed(),findCycles(seed())[0]);const id=s.loops[0].id;s=approve(s,id,'Asha');s=approve(s,id,'Asha');assert.equal(s.loops[0].approvals.length,1);s=approve(s,id,'Maya');assert.equal(s.loops[0].status,'proposed');s=approve(s,id,'Noor');assert.equal(s.loops[0].status,'reserved');assert.equal(findCycles(s).length,0);s=withdraw(s,id,'Maya');assert.equal(findCycles(s).length,1);});
+test('rejects outsiders, expired proposals and duplicate proposals',()=>{let s=propose(seed(),findCycles(seed())[0],100);assert.throws(()=>approve(s,s.loops[0].id,'Guest',101));assert.throws(()=>approve(s,s.loops[0].id,'Asha',100+86400001));assert.throws(()=>propose(s,findCycles(s)[0],101));});
+test('no wishes means no invented matches',()=>assert.deepEqual(findCycles({...seed(),wants:{}}),[]));
