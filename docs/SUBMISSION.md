@@ -9,6 +9,7 @@ Consumer value: a three-person exchange can work when no direct swap does. Event
 
 ## Materials
 - Repository: https://github.com/Ananya6Daitkar/New1
+- Deployment: https://loopfit-exchange.ananyadn678.chatgpt.site/ (private; authorized sign-in required)
 - Screenshots: see screenshots/ in this directory.
 - Recording script: ../presentation/demo-script.md
 - Presentation: ../presentation/LoopFit-demo.pptx

@@ -2,6 +2,12 @@
 
 A fashion exchange prototype combining YouCam AI appearance previews with two- and three-person clothing exchanges. Built for the YouCam hackathon.
 
+## Deployed website
+
+[Open LoopFit](https://loopfit-exchange.ananyadn678.chatgpt.site/)
+
+The deployment is private. Sign in with an authorized account; judges must be granted access before testing.
+
 ## What works
 - Editorial wardrobe demo with clearly labeled seeded participants.
 - AI Studio: consenting person photo + garment photo, authenticated YouCam request, task polling and deletion.
