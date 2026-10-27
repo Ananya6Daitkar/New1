@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: loopfit-open-circle
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: npm ci && npm run build:render
+    startCommand: npm run start:render
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 22.22.0
+      - key: DATABASE_URL
+        fromDatabase:
+          name: loopfit-free-db
+          property: connectionString
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: INVITE_CODE
+        generateValue: true
+      - key: YOUCAM_API_KEY
+        sync: false
+      - key: NEXT_TELEMETRY_DISABLED
+        value: "1"
+databases:
+  - name: loopfit-free-db
+    plan: free
+    region: oregon
+    ipAllowList: []

@@ -51,3 +51,5 @@ yarn-error.log*
 /test-assets/
 /docs/studio-redesign.png
 /docs/matching-preferences.png
+
+/.render-build/

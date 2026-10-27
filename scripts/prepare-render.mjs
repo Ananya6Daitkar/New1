@@ -1,0 +1,14 @@
+import fs from 'node:fs/promises';import path from 'node:path';
+const root=process.cwd(),out=path.join(root,'.render-build');await fs.mkdir(out,{recursive:true});
+for(const dir of ['app','lib','public','render'])await fs.cp(path.join(root,dir),path.join(out,dir),{recursive:true});
+for(const file of ['package.json','package-lock.json','postcss.config.mjs'])await fs.copyFile(file,path.join(out,file));
+await fs.symlink(path.join(root,'node_modules'),path.join(out,'node_modules'),'dir').catch(e=>{if(e.code!=='EEXIST')throw e});
+for(const area of ['app','lib']){async function walk(dir){for(const e of await fs.readdir(dir,{withFileTypes:true})){const p=path.join(dir,e.name);if(e.isDirectory())await walk(p);else if(/\.[tm]sx?$/.test(p)){let s=await fs.readFile(p,'utf8');const rel=path.relative(path.dirname(p),path.join(out,'render/runtime')).split(path.sep).join('/');s=s.replace(/from ['"]cloudflare:workers['"]/g,`from '${rel}'`);if(area==='app')s=s.replace('Sign in with ChatGPT','Sign in to LoopFit');await fs.writeFile(p,s)}}}await walk(path.join(out,area));}
+await fs.writeFile(path.join(out,'app/chatgpt-auth.ts'),"export * from '../render/auth';\n");
+await fs.mkdir(path.join(out,'app/signin-with-chatgpt'),{recursive:true});await fs.writeFile(path.join(out,'app/signin-with-chatgpt/page.tsx'),"export {default} from '../../render/login';\n");
+await fs.mkdir(path.join(out,'app/api/auth'),{recursive:true});await fs.writeFile(path.join(out,'app/api/auth/route.ts'),"export {POST} from '../../../render/auth-route';\n");
+await fs.mkdir(path.join(out,'app/api/health'),{recursive:true});await fs.writeFile(path.join(out,'app/api/health/route.ts'),"export function GET(){return Response.json({ok:true})}\n");
+await fs.copyFile('render/proxy.ts.template',path.join(out,'proxy.ts'));
+await fs.writeFile(path.join(out,'next.config.mjs'),"export default {serverExternalPackages:['pg'],experimental:{serverActions:{bodySizeLimit:'18mb'}}};\n");
+await fs.writeFile(path.join(out,'tsconfig.json'),JSON.stringify({compilerOptions:{target:'ES2022',types:['node','@cloudflare/workers-types'],lib:['dom','dom.iterable','esnext'],strict:true,noEmit:true,skipLibCheck:true,esModuleInterop:true,module:'esnext',moduleResolution:'bundler',resolveJsonModule:true,jsx:'react-jsx',allowImportingTsExtensions:true,plugins:[{name:'next'}]},include:['next-env.d.ts','app/**/*.ts','app/**/*.tsx','render/**/*.ts','render/**/*.tsx','lib/exchange.ts','lib/live.ts','lib/open-circle.ts','.next/types/**/*.ts'],exclude:['node_modules','render/proxy.ts.template']},null,2));
+console.log('Prepared separate Render build; Cloudflare source preserved');

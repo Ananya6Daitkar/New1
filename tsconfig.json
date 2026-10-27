@@ -42,6 +42,7 @@
     "**/*.mts"
   ],
   "exclude": [
+    ".render-build",
     "node_modules",
     "examples",
     "dist",
