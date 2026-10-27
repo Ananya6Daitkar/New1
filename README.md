@@ -6,7 +6,7 @@ A fashion exchange prototype combining YouCam AI appearance previews with two- a
 
 [Open LoopFit on Render](https://loopfit-open-circle.onrender.com/) · [Original Sites deployment](https://loopfit-exchange.ananyadn678.chatgpt.site/)
 
-The deployment is private. Sign in with an authorized account; judges must be granted access before testing.
+The Render homepage and AI Studio interface open without sign-in. The homepage is a clearly labeled browser-local demo. Real shared events, personal photos and paid YouCam generation require an invited account. The original Sites deployment remains private.
 
 ## Open Circle
 
@@ -90,4 +90,4 @@ The included `render.yaml` provisions a **Free web service and Free PostgreSQL d
 - Photos are stored in PostgreSQL, so web-server restarts do not erase them. Database capacity is limited; use this for a small pilot.
 - **The free database expires after 30 days.** Export it before expiry using `pg_dump` from an authorized connection and migrate or recreate separately; this setup does not perform automatic backups. Free web services sleep after inactivity and may take time to wake.
 
-**Render deployment:** [Open LoopFit on Render](https://loopfit-open-circle.onrender.com/) (invitation-only sign-in).
+**Render deployment:** [Open LoopFit on Render](https://loopfit-open-circle.onrender.com/) (public prototype demo; invitation-only live features).
