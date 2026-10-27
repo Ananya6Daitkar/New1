@@ -1,45 +1,33 @@
-# LoopFit demo video script
+# LoopFit Open Circle demo
 
-Target: 2 minutes 50 seconds. Show the two slides first, then the website.
+Target: 75–90 seconds, within the hackathon's 1–3-minute requirement. The earlier two slides explain ordinary swaps; use the updated narration below for Open Circle.
 
-## Before recording
-Prepare a shared event with consenting participants and original garment photos. New listings need a separate close-up showing flaws or a wear-prone area, chest circumference in cm, shoulder-to-hem length in cm and a style. Use a public meeting location. Save genuine preferences that create a cycle. Complete a real three-account rehearsal before recording; switching seeded demo personas is not proof of three-account testing.
+## Prepare before recording
+Use three consenting, independently signed-in participants in one shared event. Donor lists a cardigan as Gift. Swapper lists a formal shirt as Exchange and saves the cardigan. Recipient saves the shirt and enables “I would like to receive without swapping” in Open Circle. Use actual measurements and compatible preferences. Prepare a real YouCam preview. Rehearse before recording. Do not pretend seeded personas are independent accounts.
 
-Verify one real YouCam result and deletion, and test sign-in recovery with selected photos. Sign in before recording and keep API keys and account details off screen. Localhost is only accessible on your computer. Judge access needs separate hosting.
+## 0–10 seconds: introduction
+Show homepage, then Your circle.
+“Someone needs a formal shirt. Our donor only has a cardigan. LoopFit's Open Circle connects the gap through one willing swapper.”
 
-## 0:00–0:20 — Slide 1
-“This is LoopFit. A direct clothing swap only works when both people want each other’s piece. LoopFit connects several wardrobes in one exchange, with a YouCam appearance preview to help people picture a garment before deciding.”
+## 10–25 seconds: gifts and requests
+Show Gift this piece in the listing form, then the recipient's opt-in in Open Circle.
+“The donor offers a cardigan without asking for anything back. A recipient can request a piece without having clothes to exchange. Each recipient saves the garment they actually want.”
 
-## 0:20–0:40 — Slide 2
-“Asha wants Maya’s cardigan. Maya wants Noor’s overshirt. Noor wants Asha’s shirt. Our matcher can find this three-person loop. Everyone must approve before the exchange is reserved. Let me show you.”
+## 25–40 seconds: the discovered chain
+Show the visual handovers in Open Circle.
+“The swapper receives the cardigan and passes on their formal shirt. The recipient gets the shirt. The matcher checks availability and any saved size, style and measurement preferences.”
 
-## 0:40–1:05 — Your circle: listing details
-Open http://127.0.0.1:5173/events. Show a prepared real-event listing and expand its condition close-up.
+## 40–55 seconds: genuine AI preview
+Open Preview this piece and show a real result only if verified.
+“We use Perfect Corp's YouCam AI Clothes Try-On V3 API to preview the garment's appearance before deciding. It doesn't guarantee physical fit.”
+If no real result has been verified, show the inputs and explicitly say the integration is still being tested. Never substitute generated promotional footage for API output.
 
-“Each new listing includes garment measurements, a style and a separate condition close-up. Participants can inspect wear before agreeing. These photos come from the owner; LoopFit does not independently certify the condition.”
+## 55–75 seconds: approval and handover
+Enter public meeting details, propose, then show the rehearsed approval and receipt states in Your loops.
+“Everyone approves before the pieces are reserved. Each recipient confirms receipt separately. If only one handover finishes, the chain stays reserved so the remaining obligation is visible.”
 
-## 1:05–1:25 — My preferences
-Show sizes, styles and garment chest range. Use values you rehearsed so the intended loop remains available.
+## 75–85 seconds: closing
+“One gift can unlock the piece someone actually chose. Our next step is a small campus pilot to measure completed chains.”
 
-“I set the sizes and styles I want, plus a chest range based on a garment I already like wearing. Matching stays within this event. It checks saved pieces against these preferences. Measurements help with selection, but do not guarantee fit.”
-
-Empty size or style selections mean any. Members without saved preferences match by their saved pieces only. Saving preferences cancels their pending proposals so consent can be collected again. Do not change preferences after proposing during the recording unless you intend to demonstrate cancellation.
-
-## 1:25–1:50 — AI Studio
-Show a real verified result, then the comparison if available.
-
-“We use Perfect Corp’s YouCam AI Clothes Try-On V3 API. YouCam helps me preview the appearance before I commit. Photos are submitted only after permission. I can delete the preview afterwards.”
-
-If a real generation has not succeeded, show the inputs and explicitly say the integration still needs verification. Never present the editorial artwork or sample garment images as a generated try-on result.
-
-## 1:50–2:35 — Your loops
-Show a matched cycle and the explanation. Enter a public meeting location and time, then propose. Show each real participant’s approval and receipt state from the rehearsed event.
-
-“The loop connects pieces each person saved, subject to their matching preferences. I propose a public meeting place. Everyone reviews the exchange and approves separately. Changing meeting details before reservation clears the old approvals. After inspecting their piece, each person confirms receipt. We count completion only after everyone confirms.”
-
-If using the home-page demo instead, say “These are seeded demo participants.” Its participant selector does not demonstrate the new shared-event preferences or real account identity. Use Your circle for the new features.
-
-## 2:35–2:50 — Closing
-“Our next step is a campus pilot. We will measure completed exchanges and repeat participation. We want to learn whether these loops help more people find clothes they actually want to wear.”
-
-Do not claim pilot results, verified campus membership, precise distance matching, physical fit guarantees or environmental savings. Those have not been established. Check the competition’s current submission rules before publishing.
+## Integrity and readiness
+Gift/request choice is event-visible, not proof of financial need. No verified NGO, paid delivery, world-first claim or environmental savings is implied. Show real completion only if it happened. Label staged scenes. The website remains private, so arrange judge access. Keep credentials out of recordings. Use original or licensed audio. Full three-account and actual YouCam generation/deletion verification remain final checks.

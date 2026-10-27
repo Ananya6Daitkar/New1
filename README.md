@@ -8,6 +8,12 @@ A fashion exchange prototype combining YouCam AI appearance previews with two- a
 
 The deployment is private. Sign in with an authorized account; judges must be granted access before testing.
 
+## Open Circle
+
+One gift can unlock the piece someone actually chose. In **Your circle → Open Circle**, a recipient opts in to receive without swapping and saves wanted pieces. A donor lists a gift. The matcher finds a direct gift or a gift-plus-swap chain: donor gives cardigan to swapper, who gives a shirt to the final recipient. Every participant approves and each recipient confirms receipt. Donors do not submit fictional receipt confirmations.
+
+Gift chains share reservations with ordinary swaps. Changing a request invalidates pending proposals, and partial handovers remain protected. This is invitation-based community exchange, not verified charity eligibility or delivery fulfillment.
+
 ## What works
 - Editorial wardrobe demo with clearly labeled seeded participants.
 - AI Studio: consenting person photo + garment photo, authenticated YouCam request, task polling and deletion.
@@ -55,7 +61,7 @@ node --experimental-strip-types --test tests/*.test.ts
 npm run build
 ```
 
-16 domain tests cover exchange discovery, approvals, ownership, preferences, condition requirements and handover protection. Browser checks covered listing upload and preference persistence. A real three-account rehearsal and a completed YouCam generation/deletion still require end-to-end verification.
+23 domain tests cover exchange discovery, approvals, ownership, preferences, condition requirements and handover protection. Browser checks covered listing upload and preference persistence. A real three-account rehearsal and a completed YouCam generation/deletion still require end-to-end verification.
 
 ## Hosting
 This project targets Sites on Cloudflare Workers with D1 (`DB`) and R2 (`BUCKET`). `.openai/hosting.json` identifies the original Site. Register a separate Site for your own deployment rather than publishing to that ID. Configure `YOUCAM_API_KEY` through hosting secrets. Production migrations apply during Sites deployment. Runtime data, API keys and local test databases are not in this repository.

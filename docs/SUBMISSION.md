@@ -1,5 +1,8 @@
 # LoopFit submission
 
+## Open Circle update
+A donated garment can unlock another garment through a willing swapper. Recipients explicitly opt in to receive without exchanging and choose wanted pieces. The app finds direct gifts and two-handover gift chains, applies preferences, collects every participant’s approval and tracks recipient receipts. YouCam previews are available from each handover card. This extends ordinary exchanges to participants who have nothing to offer. It is not a verified world-first or an established charity partnership.
+
 ## Project description
 LoopFit helps communities exchange clothes they already own. Users list upper-body garments with measurements and condition photos, save pieces they want, and discover two- or three-person exchange loops. Matching considers each participant's configured size, style and garment chest preferences. Every participant approves independently, agrees to a public meeting location and confirms receipt after inspection.
 

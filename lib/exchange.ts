@@ -1,5 +1,5 @@
-export type Piece = {id:string; owner:string; title:string; size:string; condition:string; color:string; kind:string; note:string; image?:string; chestCm?:number; lengthCm?:number; style?:string; conditionImage?:string};
-export type Loop = {id:string; members:string[]; items:string[]; approvals:string[]; status:'proposed'|'reserved'|'complete'|'cancelled'; expires:number; handover?:string};
+export type Piece = {id:string; owner:string; title:string; size:string; condition:string; color:string; kind:string; note:string; image?:string; chestCm?:number; lengthCm?:number; style?:string; conditionImage?:string; offer?:'swap'|'gift'};
+export type Loop = {id:string; members:string[]; items:string[]; approvals:string[]; status:'proposed'|'reserved'|'complete'|'cancelled'; expires:number; handover?:string; transfers?:{from:string;to:string;piece:string}[]};
 export const styles = ['Casual','Minimal','Streetwear','Formal','Vintage'] as const;
 export type Preference={sizes:string[]; styles:string[]; minChest:number; maxChest:number};
 export type State = {preferences?:Record<string,Preference>;pieces:Piece[]; wants:Record<string,string[]>; loops:Loop[]};
@@ -11,13 +11,13 @@ export function seed():State{return {pieces:[
 ],wants:{Asha:['knit'],Maya:['rust'],Noor:['sage']},loops:[]};}
 export function findCycles(s:State):string[][] {
  const locked=new Set(s.loops.filter(l=>l.status==='reserved'||l.status==='complete').flatMap(l=>l.items));
- const available=s.pieces.filter(p=>!locked.has(p.id)); const found=new Map<string,string[]>();
+ const available=s.pieces.filter(p=>p.offer!=='gift'&&!locked.has(p.id)); const found=new Map<string,string[]>();
  function visit(path:string[]){const current=path[path.length-1];for(const item of available.filter(p=>(s.wants[current]||[]).includes(p.id)&&matchesPreference(s,current,p)&&p.owner!==current)){const next=item.owner;if(next===path[0]&&path.length>=2){const key=[...path].sort().join('|');if(!found.has(key))found.set(key,[...path]);}else if(path.length<3&&!path.includes(next))visit([...path,next]);}}
  [...new Set(available.map(p=>p.owner))].forEach(p=>visit([p]));return [...found.values()];
 }
 export function propose(s:State,members:string[],now=Date.now()):State {
  if(!findCycles(s).some(c=>c.join('|')===members.join('|')))throw Error('This loop is no longer available.');
- const items=members.map((m,i)=>s.pieces.find(p=>p.owner===members[(i+1)%members.length]&&(s.wants[m]||[]).includes(p.id)&&matchesPreference(s,m,p)&&!s.loops.some(l=>['reserved','complete'].includes(l.status)&&l.items.includes(p.id)))!.id);
+ const items=members.map((m,i)=>s.pieces.find(p=>p.offer!=='gift'&&p.owner===members[(i+1)%members.length]&&(s.wants[m]||[]).includes(p.id)&&matchesPreference(s,m,p)&&!s.loops.some(l=>['reserved','complete'].includes(l.status)&&l.items.includes(p.id)))!.id);
  if(s.loops.some(l=>l.status==='proposed'&&l.expires>now&&l.items.join()===items.join()))throw Error('This loop is already awaiting approval.');
  return {...s,loops:[...s.loops,{id:crypto.randomUUID(),members,items,approvals:[],status:'proposed',expires:now+24*60*60*1000}]};
 }
