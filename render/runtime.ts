@@ -5,3 +5,5 @@ class Statement{values:unknown[]=[];constructor(public query:string){}bind(...va
 const DB={prepare:(q:string)=>new Statement(q)};
 const BUCKET={async put(id:string,stream:ReadableStream,options:any){const bytes=Buffer.from(await new Response(stream).arrayBuffer());await pool.query('INSERT INTO photo_objects (id,bytes,mime) VALUES ($1,$2,$3)',[id,bytes,options.httpMetadata.contentType])},async get(id:string){const r=await pool.query('SELECT bytes FROM photo_objects WHERE id=$1',[id]);return r.rows[0]?{body:new Uint8Array(r.rows[0].bytes)}:null}};
 export const env={DB,BUCKET,YOUCAM_API_KEY:process.env.YOUCAM_API_KEY};
+
+export function expectedOrigin(req:Request){return new URL(process.env.RENDER_EXTERNAL_URL||process.env.APP_ORIGIN||req.url).origin}

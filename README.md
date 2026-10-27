@@ -2,9 +2,9 @@
 
 A fashion exchange prototype combining YouCam AI appearance previews with two- and three-person clothing exchanges. Built for the YouCam hackathon.
 
-## Deployed website
+## Deployed websites
 
-[Open LoopFit](https://loopfit-exchange.ananyadn678.chatgpt.site/)
+[Open LoopFit on Render](https://loopfit-open-circle.onrender.com/) · [Original Sites deployment](https://loopfit-exchange.ananyadn678.chatgpt.site/)
 
 The deployment is private. Sign in with an authorized account; judges must be granted access before testing.
 
@@ -90,4 +90,4 @@ The included `render.yaml` provisions a **Free web service and Free PostgreSQL d
 - Photos are stored in PostgreSQL, so web-server restarts do not erase them. Database capacity is limited; use this for a small pilot.
 - **The free database expires after 30 days.** Export it before expiry using `pg_dump` from an authorized connection and migrate or recreate separately; this setup does not perform automatic backups. Free web services sleep after inactivity and may take time to wake.
 
-The Render URL will be added here after a successful live deployment.
+**Render deployment:** [Open LoopFit on Render](https://loopfit-open-circle.onrender.com/) (invitation-only sign-in).
